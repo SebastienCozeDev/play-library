@@ -1,0 +1,15 @@
+<h2>Modifier commentaire</h2>
+<form [formGroup]="commentaireForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="commentaire">Commentaire:</label>
+    <input type="text" id="commentaire" class="form-control" formControlName="commentaire" required>
+  </div>
+  <div>
+    <label for="note">Note:</label>
+    <input type="text" id="note" class="form-control" formControlName="note" required>
+  </div>
+  <div class="modal-buttons">
+    <button mat-button (click)="cancel()">Annuler</button>
+    <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+  </div>
+</form>

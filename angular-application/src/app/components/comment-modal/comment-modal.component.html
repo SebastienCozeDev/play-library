@@ -1,0 +1,16 @@
+<h2>Nouveau commentaire</h2>
+<form [formGroup]="commentaireForm">
+  <div>
+    <label for="commentaire">Commentaire:</label>
+    <input type="text" id="commentaire" class="form-control" formControlName="commentaire" required>
+
+  </div>
+  <div>
+    <label for="note">Note:</label>
+    <input type="text" id="note" class="form-control" formControlName="note" required>
+  </div>
+  <div class="modal-buttons">
+    <button mat-button (click)="cancel()">Annuler</button>
+    <button mat-raised-button color="primary" (click)="createComment()">Enregistrer</button>
+  </div>
+</form>

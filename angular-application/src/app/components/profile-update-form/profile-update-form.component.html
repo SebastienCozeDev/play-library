@@ -1,0 +1,65 @@
+<div>
+  <div class="form-container">
+    <h2 *ngIf="personalProfile">Modifier votre profil</h2>
+    <h2 *ngIf="!personalProfile">Modifier de ce profil</h2>
+  </div>
+  <div class="form-container">
+    <mat-form-field>
+      <mat-label>Entrer votre login</mat-label>
+      <input matInput placeholder="pat.dupuis" [formControl]="login" required>
+      <mat-error *ngIf="login.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-container">
+    <mat-form-field>
+      <mat-label>Entrer votre adresse mail</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-container">
+    <mat-form-field>
+      <mat-label>Entrer votre nom de famille</mat-label>
+      <input matInput placeholder="Dupuis" [formControl]="nom" required>
+      <mat-error *ngIf="nom.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-container">
+    <mat-form-field>
+      <mat-label>Entrer votre prénom</mat-label>
+      <input matInput placeholder="Pat" [formControl]="prenom" required>
+      <mat-error *ngIf="prenom.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-container">
+    <mat-form-field>
+      <mat-label>Entrer votre pseudonyme</mat-label>
+      <input matInput placeholder="Pat-pat" [formControl]="pseudo" required>
+      <mat-error *ngIf="pseudo.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-container">
+    <mat-form-field>
+      <mat-label>Entrer votre nouveau mot de passe</mat-label>
+      <input matInput placeholder="Afe/8f@efj78EfZ" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="password.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-button-row">
+    <button [routerLink]="['/profile', id]" mat-fab extended color="warn" *ngIf="!personalProfile">
+      <mat-icon>cancel</mat-icon>
+      Annuler
+    </button>
+    <button [routerLink]="['/profile']" mat-fab extended color="warn" *ngIf="personalProfile">
+      <mat-icon>cancel</mat-icon>
+      Annuler
+    </button>
+    <button (click)="editButtonEvent()" mat-fab extended color="primary">
+      <mat-icon>edit</mat-icon>
+      Modifier
+    </button>
+  </div>
+</div>

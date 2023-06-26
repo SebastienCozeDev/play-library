@@ -1,0 +1,9 @@
+<div>
+  <p *ngIf="!single">Note moyenne des utilisateurs : {{ rating }}/{{ totalStar }}</p>
+  <span class="star-icon"
+    *ngFor="let ratingId of ratingArray; index as i" title="{{ rating}}">
+    <mat-icon>
+      {{ iconStatus(i) }}
+    </mat-icon>
+  </span>
+</div>

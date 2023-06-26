@@ -1,0 +1,95 @@
+<div *ngIf="jeu">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ jeu.nom }}</mat-card-title>
+
+      <div>
+        <img [src]="jeu.url_media" alt="Uploaded Image" height="80" width="80">
+      </div>
+
+      <mat-card-subtitle>
+        <mat-chip class="langue">
+          Langue : {{ jeu.langue }}
+        </mat-chip>
+
+        <mat-chip class="categorie">
+          Catégorie : {{ jeu.categorie.nom }}
+        </mat-chip>
+
+        <mat-chip class="theme">
+          Thème : {{ jeu.theme.nom }}
+        </mat-chip>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-chip>{{ jeu.duree_partie }} min</mat-chip>
+      <mat-chip>{{ jeu.age_min }}+</mat-chip>
+      <mat-chip>{{ jeu.nombre_joueurs_min }} - {{ jeu.nombre_joueurs_max }} joueurs</mat-chip>
+
+
+      <p class="description">{{ jeu.description }}</p>
+
+      <app-carte-jeu-note [rating]="noteMoyenne"></app-carte-jeu-note>
+
+      <div class="info">
+        <span class="label">Nombre like: </span>
+        <span class="value">{{ nbLike }}</span>
+        <button mat-flat-button color="warn" *ngIf="isLiked" (click)="toggleLike()">Unlike</button>
+        <button mat-stroked-button color="warn" *ngIf="!isLiked" (click)="toggleLike()">Like</button>
+      </div>
+
+      <button mat-icon-button color="primary" routerLink="/jeux/{{ jeu.id }}/update">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-raised-button color="primary" *ngIf="!isPurchased" (click)="openModalBuy()">
+        <mat-icon>shopping_cart</mat-icon> Buy
+      </button>
+      <button mat-raised-button color="primary" *ngIf="isPurchased" (click)="openModalUnBuy()">
+        <mat-icon>remove_shopping_cart</mat-icon> Cancel buy
+      </button>
+
+      <div class="info">
+        <span class="label">Prix moyen: </span>
+        <span class="value">{{ prixMoyen }}</span>
+      </div>
+
+      <div>
+        <mat-button-toggle-group>
+          <mat-button-toggle value="oldest" mat-stroked-button (click)="toggleSortOldestFirst()">Tri du plus ancien au plus récent</mat-button-toggle>
+          <mat-button-toggle value="newest" mat-stroked-button (click)="toggleSortNewestFirst()">Tri du plus récent au plus ancien</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <hr>
+
+
+      <div class="commentaires">
+        <h2>Liste des commentaires</h2>
+        <button mat-raised-button color="primary" (click)="openCommentModal(jeu)">Ajouter un commentaire</button>
+        <div *ngFor="let commentaire of commentaires" class="comment-{{commentaire.id}}">
+          <mat-card>
+            <mat-card-header>
+              <app-carte-jeu-note [rating]="commentaire.note" [single]="true"></app-carte-jeu-note>
+
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ commentaire.commentaire }}</p>
+              <p>{{ commentaire.date_com }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-icon-button color="primary" (click)="editCommentaire(commentaire, jeu)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" (click)="deleteCommentaire(jeu.id, commentaire.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

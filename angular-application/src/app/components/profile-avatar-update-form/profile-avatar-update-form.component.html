@@ -1,0 +1,30 @@
+<div>
+  <div class="form-container">
+    <h2 *ngIf="personalProfile">Modifier l'avatar de votre profil</h2>
+    <h2 *ngIf="!personalProfile">Modifier l'avatar de ce profil</h2>
+  </div>
+  <form [formGroup]="fileForm" (ngSubmit)="uploadFile()">
+
+  <div class="form-container">
+      <mat-label>Entrer le lien de votre nouvelle image de profil</mat-label>
+        <input type="file" formControlName="file" accept="image/*" id="filepicker">
+  </div>
+
+  <div class="form-button-row">
+    <button [routerLink]="['/profile', id]" mat-fab extended color="warn" *ngIf="!personalProfile">
+      <mat-icon>cancel</mat-icon>
+      Annuler
+    </button>
+    <button [routerLink]="['/profile']" mat-fab extended color="warn" *ngIf="personalProfile">
+      <mat-icon>cancel</mat-icon>
+      Annuler
+    </button>
+    <button type="submit" mat-fab extended color="primary">
+      <mat-icon>edit</mat-icon>
+      Modifier
+    </button>
+
+
+</div>
+  </form>
+</div>

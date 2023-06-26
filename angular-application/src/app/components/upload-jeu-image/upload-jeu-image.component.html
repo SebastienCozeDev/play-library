@@ -1,0 +1,6 @@
+<p>upload-jeu-image works!</p>
+
+<form [formGroup]="fileForm" (ngSubmit)="uploadFile()">
+  <input type="file" formControlName="file" accept="image/*" id="filepicker">
+  <button type="submit">Upload</button>
+</form>

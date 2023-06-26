@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="pointer" routerLink="/home">{{ title }}</span>
+    <span class="header-spacer"></span>
+    <div class="example-button-row">
+      <!-- TODO Check if the user is connected or not. -->
+      <!-- TODO For connected users -->
+      <div *ngIf="userIsConnected()">
+        <span *ngIf="currentProfile$ | async as profile">
+          <img class="header-avatar" src="data:image/png;base64,{{ profile.adherent.avatar }}" height="30" alt="Avatar de l'utilisateur">
+
+          <span>
+            {{ profile.adherent.nom }}
+            {{ profile.adherent.prenom }}
+          </span>
+        </span>
+        <a mat-stroked-button class="header-button" routerLink="/profile">Mon profil</a>
+        <a mat-stroked-button class="header-button" routerLink="/jeux" href="">Liste des jeux</a>
+        <a mat-stroked-button class="header-button" (click)="logout()">Se déconnecter</a>
+      </div>
+      <!-- TODO For unconnected users -->
+      <div *ngIf="!userIsConnected()">
+        <a mat-stroked-button class="header-button" routerLink="/login">Se connecter</a>
+        <a mat-stroked-button class="header-button" routerLink="/register">S'enregistrer</a>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>
+

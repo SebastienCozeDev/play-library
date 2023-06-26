@@ -1,0 +1,17 @@
+<div class="button-container">
+  <button mat-raised-button color="primary" routerLink="/jeux/create">Ajouter un jeu</button>
+</div>
+
+<div class="button-container">
+  <button mat-raised-button (click)="filtrerParAgeMin()">Trier par âge minimum</button>
+  <button mat-raised-button (click)="filtrerParDuree()">Trier par durée de partie</button>
+  <button mat-raised-button (click)="filtrerParJoueursMin()">Trier par nombre de joueurs minimum</button>
+  <button mat-raised-button (click)="filtrerParJoueursMax()">Trier par nombre de joueurs maximum</button>
+  <button mat-raised-button (click)="filtrerParMostLiked()">Trier par les plus aimés</button>
+  <button mat-raised-button (click)="filtrerParBestRated()">Trier par les mieux notés</button>
+</div>
+
+<div *ngFor="let jeu of dataSource.jeux" class="card-spacing">
+  <app-carte-jeu [jeu]="jeu" [authenticated]="authenticated"></app-carte-jeu>
+</div>
+

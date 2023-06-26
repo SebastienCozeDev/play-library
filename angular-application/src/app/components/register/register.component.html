@@ -1,0 +1,17 @@
+<div class="card">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
+    <div class="p-formgroup-inline">
+      <h2>Register</h2>
+      <input matInput type="text" placeholder="Login" formControlName="login" required>
+      <input matInput type="text" placeholder="Prenom" formControlName="prenom" required>
+      <input matInput type="text" placeholder="Nom" formControlName="nom" required>
+      <input matInput type="text" placeholder="Pseudo" formControlName="pseudo" required>
+      <input matInput type="email" placeholder="Email" formControlName="email" class="input-field">
+      <input matInput type="password" placeholder="Password" formControlName="password" class="input-field">
+      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" class="submit-button">Valider</button>
+      <div>
+        <p>Déjà un compte? <a routerLink="/login" class="">Connectez-vous</a></p>
+      </div>
+    </div>
+  </form>
+</div>

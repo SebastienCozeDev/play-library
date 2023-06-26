@@ -1,0 +1,95 @@
+<div *ngIf="profilCourant$ | async as profile">
+  <mat-card class="profile-card">
+    <div class="profile-card-content">
+      <mat-card-header>
+        <img mat-card-avatar id="profile-avatar" class="profile-header-image" src="data:image/png;base64,{{ profile.adherent.avatar }}" alt="Avatar du profil">
+        <mat-card-title>{{ profile.adherent.nom }} {{ profile.adherent.prenom }}</mat-card-title>
+        <mat-card-subtitle>{{ profile.adherent.login }} • {{ profile.adherent.pseudo }} • {{ profile.adherent.email }}</mat-card-subtitle>
+
+      </mat-card-header>
+
+      <mat-card-actions *ngIf="personalProfile">
+        <button mat-button [routerLink]="['/update-profile', profile.adherent.id, personalProfile]" class="profile-link">
+          MODIFIER MON PROFIL
+        </button>
+        <button mat-button [routerLink]="['/update-avatar', profile.adherent.id, personalProfile]" class="profile-link">MODIFIER MON AVATAR</button>
+      </mat-card-actions>
+      <mat-card-actions *ngIf="!personalProfile">
+        <button mat-button [routerLink]="['/update-profile', profile.adherent.id, personalProfile]" class="profile-link">
+          MODIFIER SON PROFIL
+        </button>
+        <button mat-button [routerLink]="['/update-avatar', profile.adherent.id, personalProfile]" class="profile-link">MODIFIER SON AVATAR</button>
+      </mat-card-actions>
+    </div>
+
+    <mat-divider class="profile-card-content"></mat-divider>
+
+    <mat-card-content class="profile-card-content">
+      <h2 class="mat-title">Commentaires postés</h2>
+      <mat-card *ngFor="let comment of profile.commentaires" class="card-for-comment">
+        <mat-card-header>
+          <mat-card-title>
+            <h3>État : {{ comment.etat }}</h3>
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ comment.note }} / 5
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ comment.commentaire }}
+          </p>
+        </mat-card-content>
+        <mat-card-footer>
+          <div class="card-footer-date-for-comment">
+            {{ comment.date_com }}
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    </mat-card-content>
+
+    <mat-divider class="profile-card-content"></mat-divider>
+
+    <mat-card-content class="profile-card-content">
+      <h2 class="mat-title">Jeux achetés</h2>
+      <mat-table [dataSource]="profile.achats">
+        <ng-container matColumnDef="jeu_id">
+          <mat-header-cell *matHeaderCellDef>Nom du jeu</mat-header-cell>
+          <mat-cell *matCellDef="let jeuAchete">{{ jeuAchete['jeu_nom'] }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="date_achat">
+          <mat-header-cell *matHeaderCellDef>Date d'achat</mat-header-cell>
+          <mat-cell *matCellDef="let jeuAchete">{{ jeuAchete['date_achat'] }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="lieu_achat">
+          <mat-header-cell *matHeaderCellDef>Lieu d'achat</mat-header-cell>
+          <mat-cell *matCellDef="let jeuAchete">{{ jeuAchete['lieu_achat'] }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="prix">
+          <mat-header-cell *matHeaderCellDef>Prix</mat-header-cell>
+          <mat-cell *matCellDef="let jeuAchete">{{ jeuAchete['prix'] }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['jeu_id', 'date_achat', 'lieu_achat', 'prix']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['jeu_id', 'date_achat', 'lieu_achat', 'prix']"></mat-row>
+      </mat-table>
+    </mat-card-content>
+
+    <mat-divider class="profile-card-content"></mat-divider>
+
+    <!-- TODO Use game details to do it -->
+    <mat-card-content class="profile-card-content">
+      <h2 class="mat-title">Jeux aimés</h2>
+       <!-- [routerLink]="['/persons', element.id]" -->
+      <mat-list>
+        <span *ngFor="let jeuAime of profile.likes">
+          <mat-list-item>
+            <a [routerLink]="['/jeux', jeuAime.jeu_id]" class="profile-link">{{ jeuAime.jeu_nom }}</a>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </span>
+      </mat-list>
+    </mat-card-content>
+
+  </mat-card>
+</div>

@@ -1,0 +1,107 @@
+<mat-card>
+  <div class="text-left">
+    <button mat-icon-button color="primary"  *ngIf="currentJeu" [routerLink]="'/jeux/' + currentJeu.id">
+      <mat-icon>arrow_back</mat-icon>
+      Retour
+    </button>
+  </div>
+
+
+  <mat-card-content>
+    <div class="container">
+      <h2>Modification d'un jeu</h2>
+      <form [formGroup]="jeuForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Nom du jeu ici:</mat-label>
+            <input matInput type="text" formControlName="nom" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Description du jeu:</mat-label>
+            <textarea matInput formControlName="description" required></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Langue du jeu:</mat-label>
+            <input matInput type="text" formControlName="langue" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Âge minimum:</mat-label>
+            <input matInput type="number" formControlName="age_min" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Nombre de joueurs minimum:</mat-label>
+            <input matInput type="number" formControlName="nombre_joueurs_min" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Nombre de joueurs maximum:</mat-label>
+            <input matInput type="number" formControlName="nombre_joueurs_max" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Durée d'une partie:</mat-label>
+            <input matInput type="number" formControlName="duree_partie" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Catégorie:</mat-label>
+            <mat-select formControlName="categorie" required>
+              <mat-option value="" disabled selected>Choisir une catégorie</mat-option>
+              <mat-option *ngFor="let categorie of categories" [value]="categorie">
+                {{ categorie }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Thème:</mat-label>
+            <mat-select formControlName="theme" required>
+              <mat-option value="" disabled selected>Choisir un thème</mat-option>
+              <mat-option *ngFor="let theme of themes" [value]="theme">
+                {{ theme }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Éditeur:</mat-label>
+            <mat-select formControlName="editeur" required>
+              <mat-option value="" disabled selected>Choisir un éditeur</mat-option>
+              <mat-option *ngFor="let editeur of editeurs" [value]="editeur">
+                {{ editeur }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <button mat-raised-button type="submit" color="primary" [disabled]="!jeuForm.valid">Mettre à jour le jeu
+        </button>
+      </form>
+
+      <app-upload-jeu-image></app-upload-jeu-image>
+    </div>
+
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,41 @@
+footer {
+  position: relative;
+  bottom: 0;
+  background-color: #f4f4f4;
+  padding: 20px;
+  color: #666;
+  text-align: center;
+}
+
+.company-address {
+  margin-bottom: 10px;
+}
+
+.social-links,
+.static-pages {
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

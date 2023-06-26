@@ -1,0 +1,21 @@
+<footer>
+  <div class="company-address">Adresse : {{ address }}</div>
+
+  <div class="social-links">
+    <h3>Liens vers les réseaux sociaux :</h3>
+    <ul>
+      <li *ngFor="let link of socialLinks">
+        <a [href]="link.url" target="_blank">{{ link.name }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="static-pages">
+    <h3>Liens vers les pages statiques :</h3>
+    <ul>
+      <li *ngFor="let page of staticPages">
+        <a [routerLink]="page.url">{{ page.name }}</a>
+      </li>
+    </ul>
+  </div>
+</footer>

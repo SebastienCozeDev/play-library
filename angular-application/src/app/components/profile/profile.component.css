@@ -1,0 +1,30 @@
+.card-for-comment {
+  margin: 3rem;
+}
+
+.card-footer-date-for-comment {
+  margin-left: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.profile-card-content {
+  margin: 5rem;
+}
+
+.profile-link {
+  color: #666666;
+  text-decoration: none;
+}
+
+.profile-link:hover {
+  text-decoration: underline;
+}
+
+mat-list-item {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}

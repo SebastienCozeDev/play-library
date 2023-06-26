@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Purchase this game</h1>
+  <div mat-dialog-content>
+
+  <form [formGroup]="achatForm" (ngSubmit)="onSave()">
+    <div>
+      <mat-form-field>
+        <mat-label>Prix d'achat</mat-label>
+        <input matInput type="number" formControlName="prix" required>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Lieu d'achat</mat-label>
+        <input matInput type="text" formControlName="lieu_achat" required>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button type="submit" color="primary" [disabled]="!achatForm.valid">Enregistrer</button>
+      <button mat-raised-button type="button" color="warn" (click)="onCancel()">Annuler</button>
+    </div>
+  </form>
+  </div>
